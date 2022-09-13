@@ -94,7 +94,7 @@ class FirebaseLoginService {
     return c.future;
   }
 
-  Future<void> verifyPhoneNumberAndSignIn({String? code}) async {
+  Future<void> verifyPhoneNumberAndSignIn(String? code) async {
     PhoneAuthCredential credential;
 
     if (code != null) {
