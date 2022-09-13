@@ -35,7 +35,7 @@ class FirebaseNotificationService {
   Future<void> Function(RemoteMessage message)? onBackgroundMessageReceived;
   Future<void> Function(RemoteMessage message)? onMessageOpened;
 
-  final MethodChannel _channel = const MethodChannel("ftbase-notifications");
+  final MethodChannel _channel = const MethodChannel("ftbase");
   bool _isAuthorized = false;
 
   FirebaseNotificationService._privateConstructor();
