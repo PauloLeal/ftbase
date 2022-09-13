@@ -13,9 +13,9 @@ class FileData {
   });
 }
 
-class StorageService {
-  StorageService._privateConstructor();
-  static final StorageService instance = StorageService._privateConstructor();
+class FirebaseStorageService {
+  FirebaseStorageService._privateConstructor();
+  static final FirebaseStorageService instance = FirebaseStorageService._privateConstructor();
 
   firebase_storage.Reference _createRef(String path, String id) {
     return firebase_storage.FirebaseStorage.instance.ref().child(path).child(id);

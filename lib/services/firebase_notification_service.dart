@@ -10,27 +10,27 @@ import 'package:ftbase/utils/log.dart';
 bool _initialized = false;
 
 Future<void> _foregroundMessageReceived(RemoteMessage message) async {
-  if (NotificationService.instance.onForegroundMessageReceived != null) {
-    return NotificationService.instance.onForegroundMessageReceived!(message);
+  if (FirebaseNotificationService.instance.onForegroundMessageReceived != null) {
+    return FirebaseNotificationService.instance.onForegroundMessageReceived!(message);
   }
   return Future.value();
 }
 
 Future<void> _backgroundMessageReceived(RemoteMessage message) async {
-  if (NotificationService.instance.onBackgroundMessageReceived != null) {
-    return NotificationService.instance.onBackgroundMessageReceived!(message);
+  if (FirebaseNotificationService.instance.onBackgroundMessageReceived != null) {
+    return FirebaseNotificationService.instance.onBackgroundMessageReceived!(message);
   }
   return Future.value();
 }
 
 Future<void> _messageOpened(RemoteMessage message) async {
-  if (NotificationService.instance.onMessageOpened != null) {
-    return NotificationService.instance.onMessageOpened!(message);
+  if (FirebaseNotificationService.instance.onMessageOpened != null) {
+    return FirebaseNotificationService.instance.onMessageOpened!(message);
   }
   return Future.value();
 }
 
-class NotificationService {
+class FirebaseNotificationService {
   Future<void> Function(RemoteMessage message)? onForegroundMessageReceived;
   Future<void> Function(RemoteMessage message)? onBackgroundMessageReceived;
   Future<void> Function(RemoteMessage message)? onMessageOpened;
@@ -38,8 +38,8 @@ class NotificationService {
   final MethodChannel _channel = const MethodChannel("ftbase");
   bool _isAuthorized = false;
 
-  NotificationService._privateConstructor();
-  static final NotificationService instance = NotificationService._privateConstructor();
+  FirebaseNotificationService._privateConstructor();
+  static final FirebaseNotificationService instance = FirebaseNotificationService._privateConstructor();
 
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 

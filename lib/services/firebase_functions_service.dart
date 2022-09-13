@@ -1,11 +1,11 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:ftbase/utils/log.dart';
 
-class FunctionsService {
+class FirebaseFunctionsService {
   final functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");
 
-  FunctionsService._privateConstructor();
-  static final FunctionsService instance = FunctionsService._privateConstructor();
+  FirebaseFunctionsService._privateConstructor();
+  static final FirebaseFunctionsService instance = FirebaseFunctionsService._privateConstructor();
 
   Future<dynamic> callFunction(String functionName, Map<String, dynamic>? params) async {
     try {
