@@ -104,18 +104,18 @@ class FirebaseNotificationService {
   }
 
   Future<List<Map<String, String>>> listChannels() async {
-    List<Map<String, String>> res = List.empty();
+    List<Map<String, String>> res = List.empty(growable: true);
 
     dynamic list = await _channel.invokeMethod("Notification.listChannels", {});
 
     for (var l in list) {
-      var m = Map<String, String>();
-      m["id"] = l["id"];
-      m["name"] = l["name"];
-      m["description"] = l["description"];
+      // var m = Map<String, String>();
+      // m["id"] = l["id"];
+      // m["name"] = l["name"];
+      // m["description"] = l["description"];
 
-      // Map.from(l);
-      res.add(m);
+      res.add(Map.from(l));
+      // res.add(m);
       // Log.debug("Channel id=${channel["id"]} name=${channel["name"]} description=${channel["description"]}");
     }
     return res;
