@@ -25,9 +25,9 @@ class Notification {
 
             val channels = notificationManager().notificationChannels.map { notificationChannel ->
                 val d = HashMap<String, String>()
-                d["id"] = notificationChannel.id
+                d["id"] = notificationChannel.id ?: ""
                 d["name"] = notificationChannel.name.toString()
-                d["description"] = notificationChannel.description
+                d["description"] = notificationChannel.description ?: ""
                 d
             }.toList()
 
