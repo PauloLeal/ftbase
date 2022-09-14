@@ -104,7 +104,7 @@ class FirebaseNotificationService {
   }
 
   Future<List<Map<String, String>>> listChannels() async {
-    List<Map<String, String>> list = await _channel.invokeMethod("Notification.listChannels");
+    List<Map<String, String>> list = await _channel.invokeMethod("Notification.listChannels", {});
     return list;
   }
 
