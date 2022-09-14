@@ -90,6 +90,10 @@ class FirebaseNotificationService {
   }
 
   Future<void> createChannel(String id, String name, String description) async {
+    if (!Platform.isAndroid) {
+      return Future.value();
+    }
+
     await _channel.invokeMethod("Notification.createChannel", {
       "id": id,
       "name": name,
@@ -98,18 +102,30 @@ class FirebaseNotificationService {
   }
 
   Future<void> deleteChannel(String id) async {
+    if (!Platform.isAndroid) {
+      return Future.value();
+    }
+
     await _channel.invokeMethod("Notification.deleteChannel", {
       "id": id,
     });
   }
 
   Future<List<Map<String, String>>> listChannels() async {
+    if (!Platform.isAndroid) {
+      return Future.value(List.empty());
+    }
+
     List<Map<String, String>> res = List.empty(growable: true);
 
     dynamic list = await _channel.invokeMethod("Notification.listChannels", {});
 
     for (var l in list) {
-      Log.debug("Channel id=${l["id"]} name=${l["name"]} description=${l["description"]}");
+      var id = l["id"];
+      var name = l["name"];
+      var description = l["description"];
+
+      Log.debug("Channel id=$id name=$name description=$description");
       res.add(Map.from(l));
     }
 
