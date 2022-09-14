@@ -20,7 +20,7 @@ class FirebaseLoginService {
 
   User? get currentFirebaseUser => _currentUser;
 
-  Future<void> monitorUserState() async {
+  Future<void> initialize() async {
     if (isMonitoringUserStateChanges) {
       return Future.value();
     }

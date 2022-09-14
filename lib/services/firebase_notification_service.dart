@@ -90,7 +90,7 @@ class FirebaseNotificationService {
   }
 
   Future<void> createChannel(String id, String name, String description) async {
-    await _channel.invokeMethod('createNotificationChannel', {
+    await _channel.invokeMethod("Notification.createChannel", {
       "id": id,
       "name": name,
       "description": description,
@@ -98,9 +98,14 @@ class FirebaseNotificationService {
   }
 
   Future<void> deleteChannel(String id) async {
-    await _channel.invokeMethod('deleteNotificationChannel', {
+    await _channel.invokeMethod("Notification.deleteChannel", {
       "id": id,
     });
+  }
+
+  Future<Map<String, String>> listChannels(String id) async {
+    Map<String, String> list = await _channel.invokeMethod("Notification.listChannels");
+    return list;
   }
 
   void subscribe(String topicName) async {
@@ -125,7 +130,7 @@ class FirebaseNotificationService {
     return FirebaseMessaging.instance.getInitialMessage();
   }
 
-  Future<void> configureCloudMessaging() async => _configure(isRetry: false);
+  Future<void> initialize() async => _configure(isRetry: false);
 
   Future<void> showLocalNotification(String channelId, String channelName, RemoteMessage message) async {
     RemoteNotification? notification = message.notification;
