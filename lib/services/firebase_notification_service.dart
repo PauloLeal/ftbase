@@ -103,8 +103,8 @@ class FirebaseNotificationService {
     });
   }
 
-  Future<dynamic> listChannels() async {
-    var list = await _channel.invokeMethod("Notification.listChannels", {});
+  Future<List<Map<String, String>>> listChannels() async {
+    List<Map<String, String>> list = await _channel.invokeMethod("Notification.listChannels", {});
     return list;
   }
 
