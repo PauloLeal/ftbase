@@ -109,8 +109,10 @@ class FirebaseNotificationService {
     dynamic list = await _channel.invokeMethod("Notification.listChannels", {});
 
     for (var l in list) {
+      Log.debug("Channel id=${l["id"]} name=${l["name"]} description=${l["description"]}");
       res.add(Map.from(l));
     }
+
     return res;
   }
 
