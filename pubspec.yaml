@@ -25,6 +25,7 @@ dependencies:
   mime: ^1.0.2
   plugin_platform_interface: ^2.0.2
   shared_preferences: ^2.0.15
+  firebase_core: ^1.22.0
 
 dev_dependencies:
   flutter_test:
