@@ -27,7 +27,7 @@ class FirebaseDynamicLinkService {
     return Future.value();
   }
 
-  void initialize() async {
+  Future<void> initialize() async {
     FirebaseDynamicLinks.instance.onLink.listen((PendingDynamicLinkData dynamicLink) async {
       _doLink(dynamicLink);
     });
