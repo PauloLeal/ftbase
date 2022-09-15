@@ -2,5 +2,17 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 
 class FirebaseAnalyticsService {
   FirebaseAnalyticsService._privateConstructor();
-  static final FirebaseAnalytics fbInstance = FirebaseAnalytics.instance;
+  static final FirebaseAnalyticsService instance = FirebaseAnalyticsService._privateConstructor();
+
+  Future<void> logAppOpen({AnalyticsCallOptions? callOptions}) async {
+    await FirebaseAnalytics.instance.logAppOpen(callOptions: callOptions);
+  }
+
+  Future<void> logEvent({
+    required String name,
+    Map<String, Object?>? parameters,
+    AnalyticsCallOptions? callOptions,
+  }) async {
+    await FirebaseAnalytics.instance.logEvent(name: name, parameters: parameters, callOptions: callOptions);
+  }
 }
