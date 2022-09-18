@@ -4,7 +4,7 @@ class GeolocationService {
   GeolocationService._privateConstructor();
   static final GeolocationService instance = GeolocationService._privateConstructor();
 
-  Future<void> Function(Position position)? onPositionChanged;
+  void Function(Position position)? onPositionChanged;
 
   Position? _currentPosition;
   Position? get currentPosition => _currentPosition;
