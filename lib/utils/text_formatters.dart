@@ -1,4 +1,4 @@
-part of ftbase;
+import 'package:flutter/services.dart';
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override

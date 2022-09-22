@@ -1,4 +1,6 @@
-part of ftbase;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:ftbase/utils/log.dart';
 
 enum AuthProblems { UserNotFound, PasswordNotValid, NetworkError, AppProblem }
 

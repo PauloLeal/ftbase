@@ -1,4 +1,7 @@
-part of ftbase;
+import 'dart:async';
+
+import 'package:app_settings/app_settings.dart';
+import 'package:geolocator/geolocator.dart';
 
 class GeolocationService {
   GeolocationService._privateConstructor();

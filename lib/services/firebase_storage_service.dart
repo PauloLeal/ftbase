@@ -1,4 +1,7 @@
-part of ftbase;
+import 'dart:io' as io;
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:mime/mime.dart';
 
 class FileData {
   String? contentType;

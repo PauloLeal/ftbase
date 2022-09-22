@@ -1,4 +1,4 @@
-part of ftbase;
+import 'dart:developer';
 
 class Log {
   Log._privateConstructor();
@@ -10,7 +10,7 @@ class Log {
   void _log(String type, dynamic message) {
     DateTime now = DateTime.now();
     String ns = now.toIso8601String();
-    dev.log("[$type][$ns] $message");
+    log("[$type][$ns] $message");
   }
 
   static void trace(dynamic message) => _instance._log("TRACE", message);

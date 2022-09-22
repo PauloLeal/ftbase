@@ -1,5 +1,3 @@
-part of ftbase;
-
 class RegexUtils {
   static String matchAll() {
     return ".";

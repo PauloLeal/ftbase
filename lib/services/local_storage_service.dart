@@ -1,4 +1,4 @@
-part of ftbase;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService {
   LocalStorageService._privateConstructor();
