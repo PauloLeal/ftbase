@@ -43,7 +43,10 @@ class GeolocationService {
     _hasPermission = true;
     Geolocator.getPositionStream().listen((Position p) {
       _currentPosition = p;
-      c.complete();
+      if (!c.isCompleted) {
+        c.complete();
+      }
+
       if (onPositionChanged != null) {
         onPositionChanged!(p);
       }
