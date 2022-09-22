@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:geolocator/geolocator.dart';
 
 class GeolocationService {
@@ -9,7 +10,10 @@ class GeolocationService {
   Position? _currentPosition;
   Position? get currentPosition => _currentPosition;
 
-  Future<void> initialize() async => _configure();
+  bool _hasPermission = false;
+  bool get hasPermission => _hasPermission;
+
+  Future<void> initialize() async => await _configure();
 
   Future<void> _configure() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -26,15 +30,19 @@ class GeolocationService {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Geolocator.openAppSettings();
       return;
     }
 
+    _hasPermission = true;
     Geolocator.getPositionStream().listen((Position p) {
       _currentPosition = p;
       if (onPositionChanged != null) {
         onPositionChanged!(p);
       }
     });
+  }
+
+  Future<void> openSettings() async {
+    await AppSettings.openLocationSettings();
   }
 }
