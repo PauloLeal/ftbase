@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+part of ftbase;
 
 class HttpUtils {
   static Future<Map<String, dynamic>?> getJson(String url) async {

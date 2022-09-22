@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ftbase/services/local_storage_service.dart';
-import 'package:json_theme/json_theme.dart';
+part of ftbase;
 
 enum ThemeType { DARK, LIGHT }
 

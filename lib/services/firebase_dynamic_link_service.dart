@@ -1,5 +1,4 @@
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter/material.dart';
+part of ftbase;
 
 class FirebaseDynamicLinkService {
   FirebaseDynamicLinkService._privateConstructor();

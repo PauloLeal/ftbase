@@ -1,5 +1,4 @@
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:ftbase/utils/log.dart';
+part of ftbase;
 
 class FirebaseFunctionsService {
   final functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");

@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+part of ftbase;
 
 class FirebaseService {
   FirebaseService._privateConstructor();

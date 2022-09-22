@@ -1,10 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-
-import 'log.dart';
+part of ftbase;
 
 class I18n {
   static Locale? _locale;

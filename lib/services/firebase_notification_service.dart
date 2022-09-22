@@ -1,12 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
-
-import 'package:app_settings/app_settings.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:ftbase/utils/log.dart';
+part of ftbase;
 
 bool _initialized = false;
 

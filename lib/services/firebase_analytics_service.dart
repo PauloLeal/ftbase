@@ -1,4 +1,4 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
+part of ftbase;
 
 class FirebaseAnalyticsService {
   FirebaseAnalyticsService._privateConstructor();
