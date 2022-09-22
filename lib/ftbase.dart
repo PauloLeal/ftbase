@@ -16,3 +16,5 @@ export 'utils/i18n.dart' show I18n;
 export 'utils/log.dart' show Log;
 export 'utils/regex_utils.dart' show RegexUtils;
 export 'utils/text_formatters.dart' show LowerCaseTextFormatter, UpperCaseTextFormatter;
+
+class Ftbase {}
