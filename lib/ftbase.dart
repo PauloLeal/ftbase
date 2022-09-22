@@ -1,3 +1,5 @@
+library ftbase;
+
 export 'services/firebase_analytics_service.dart';
 export 'services/firebase_dynamic_link_service.dart';
 export 'services/firebase_functions_service.dart';
