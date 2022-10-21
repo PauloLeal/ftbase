@@ -38,11 +38,11 @@ class HttpUtils {
     return response;
   }
 
-  String marshalJson(Object data) {
+  static String marshalJson(Object data) {
     return jsonEncode(data);
   }
 
-  dynamic unmarshalJson(String json) {
+  static dynamic unmarshalJson(String json) {
     return jsonDecode(json);
   }
 }
