@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:geolocator/geolocator.dart';
@@ -63,5 +64,13 @@ class GeolocationService {
 
   Future<void> openSettings() async {
     await AppSettings.openLocationSettings();
+  }
+
+  static double calculateDistanceInMetters(Position p1, Position p2) {
+    var p = 0.017453292519943295;
+    var a = 0.5 -
+        cos((p2.latitude - p1.latitude) * p) / 2 +
+        cos(p1.latitude * p) * cos(p2.latitude * p) * (1 - cos((p2.longitude - p1.longitude) * p)) / 2;
+    return (12742 * asin(sqrt(a))) * 1000;
   }
 }
