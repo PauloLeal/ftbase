@@ -52,6 +52,12 @@ class GeolocationService {
       }
     });
 
+    Future.delayed(const Duration(seconds: 2), () {
+      if (!c.isCompleted) {
+        c.complete();
+      }
+    });
+
     return c.future;
   }
 
