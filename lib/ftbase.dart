@@ -14,3 +14,4 @@ export 'utils/i18n.dart';
 export 'utils/log.dart';
 export 'utils/regex_utils.dart';
 export 'utils/text_formatters.dart';
+export 'utils/br_utils.dart';
