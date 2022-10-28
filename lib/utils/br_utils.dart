@@ -29,10 +29,13 @@ class CepData {
 }
 
 class BrUtils {
-  static Future<CepData> checkCEP(String cep) async {
+  static Future<CepData?> checkCEP(String cep) async {
     String c = cep.replaceAll("-", "");
     final res = await HttpUtils.getJson("https://viacep.com.br/ws/$c/json/", {});
-    return CepData.fromMap(HttpUtils.unmarshalJson(res.body));
+    if (res.statusCode == 200) {
+      return CepData.fromMap(HttpUtils.unmarshalJson(res.body));
+    }
+    return Future.value(null);
   }
 
   static int _checkDigitCnpj(String s) {
