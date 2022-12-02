@@ -31,7 +31,7 @@ class CepData {
 class BrUtils {
   static Future<CepData?> checkCEP(String cep) async {
     String c = cep.replaceAll("-", "");
-    final res = await HttpUtils.getJson("https://viacep.com.br/ws/$c/json/", {});
+    final res = await HttpUtils.getJson("https://viacep.com.br/ws/$c/json/");
     if (res.statusCode == 200) {
       return CepData.fromMap(HttpUtils.unmarshalJson(res.body));
     }

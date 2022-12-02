@@ -5,9 +5,9 @@ class LocalStorageService {
 
   static final LocalStorageService instance = LocalStorageService._privateConstructor();
 
-  Future<String> getString(String key, String? defaultValue) async {
+  Future<String?> getString(String key, {String? defaultValue}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key) ?? defaultValue ?? "";
+    return prefs.getString(key) ?? defaultValue;
   }
 
   Future<void> putString(String key, String value) async {

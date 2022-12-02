@@ -37,7 +37,7 @@ class ThemeService {
   }
 
   Future<void> _selectTheme() async {
-    String t = await LocalStorageService.instance.getString(themeKey, ThemeType.LIGHT.toString());
+    String? t = await LocalStorageService.instance.getString(themeKey, defaultValue: ThemeType.LIGHT.toString());
     if (t == ThemeType.DARK.toString()) {
       _currentTheme = _darkTheme;
       _currentThemeType = ThemeType.DARK;
