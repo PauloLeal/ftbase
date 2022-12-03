@@ -8,6 +8,7 @@ export 'services/firebase_storage_service.dart';
 export 'services/geolocation_service.dart';
 export 'services/local_storage_service.dart';
 export 'services/theme_service.dart';
+export 'services/wakelock_service.dart';
 export 'utils/exception_handler.dart';
 export 'utils/http_utils.dart';
 export 'utils/i18n.dart';
