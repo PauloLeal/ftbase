@@ -27,7 +27,7 @@ class HttpUtils {
 
   static Future<HttpResponse> postJson(
     String url,
-    String json, {
+    Map<String, dynamic>? json, {
     Map<String, String>? headers,
     bool cached = false,
   }) async {
@@ -36,7 +36,7 @@ class HttpUtils {
 
   static Future<HttpResponse> putJson(
     String url,
-    String? json, {
+    Map<String, dynamic>? json, {
     Map<String, String>? headers,
     bool cached = false,
   }) async {
@@ -46,22 +46,21 @@ class HttpUtils {
   static String _hashRequest(
     String method,
     String url, {
-    String? json,
+    Map<String, dynamic>? json,
     Map<String, String>? headers,
   }) {
     String reqString = "$method$url";
     if (json != null) {
-      var m = unmarshalJson(json) as Map<String, dynamic>;
-      var kl = m.keys as List<String>;
+      var kl = json.keys.toList();
       kl.sort();
 
       for (var k in kl) {
-        reqString = "$reqString$k=${m[k]}";
+        reqString = "$reqString$k=${json[k]}";
       }
     }
 
     if (headers != null) {
-      var kh = headers.keys as List<String>;
+      var kh = headers.keys.toList();
       kh.sort();
 
       for (var k in kh) {
@@ -76,7 +75,7 @@ class HttpUtils {
   static Future<HttpResponse> _reqJson(
     String method,
     String url, {
-    String? json,
+    Map<String, dynamic>? json,
     Map<String, String>? headers,
     bool cached = false,
   }) async {
@@ -122,7 +121,7 @@ class HttpUtils {
       response = await f(
         Uri.parse(url),
         headers: headers,
-        body: json,
+        body: json != null ? marshalJson(json) : null,
       );
     }
 
