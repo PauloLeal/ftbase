@@ -19,8 +19,8 @@ dependencies:
   firebase_storage: ^11.0.11
   flutter_local_notifications: ^13.0.0
   http: ^0.13.5
-  intl: ^0.17.0
-  json_theme: ^3.0.0
+  intl: ^0.18.0
+  json_theme: ^5.0.0+2
   mime: ^1.0.2
   plugin_platform_interface: ^2.0.2
   shared_preferences: ^2.0.15
