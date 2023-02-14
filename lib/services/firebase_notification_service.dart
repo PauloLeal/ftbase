@@ -58,12 +58,10 @@ class FirebaseNotificationService {
           const InitializationSettings(android: AndroidInitializationSettings("@mipmap/launcher_icon"));
 
       try {
-        await _flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: (value) async {
-          if (value == null || value.isEmpty) {
-            return Future.value();
-          }
+        await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
+            onDidReceiveNotificationResponse: (value) async {
+          final Map<String, dynamic> data = json.decode(value.payload ?? "{}");
 
-          final Map<String, dynamic> data = json.decode(value);
           if (onMessageOpened != null) {
             onMessageOpened!(RemoteMessage(data: data));
           }
