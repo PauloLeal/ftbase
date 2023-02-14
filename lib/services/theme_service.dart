@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ftbase/services/local_storage_service.dart';
 import 'package:json_theme/json_theme.dart';
+import 'package:json_theme/json_theme_schemas.dart';
 
 enum ThemeType { DARK, LIGHT }
 
@@ -30,6 +31,7 @@ class ThemeService {
     final darkThemeFile = await rootBundle.loadString('assets/themes/dark.json');
     final lightThemeFile = await rootBundle.loadString('assets/themes/light.json');
 
+    SchemaValidator.enabled = false;
     _darkTheme = ThemeDecoder.decodeThemeData(jsonDecode(darkThemeFile))!;
     _lightTheme = ThemeDecoder.decodeThemeData(jsonDecode(lightThemeFile))!;
 
