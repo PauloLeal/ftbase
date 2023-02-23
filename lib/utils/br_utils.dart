@@ -17,13 +17,13 @@ class CepData {
 
   factory CepData.fromMap(dynamic map) {
     return CepData._internal(
-      cep: map["cep"] as String,
-      logradouro: map["logradouro"] as String,
-      complemento: map["complemento"] as String,
-      bairro: map["bairro"] as String,
-      localidade: map["localidade"] as String,
-      uf: map["uf"] as String,
-      ddd: map["ddd"] as String,
+      cep: (map["cep"] ?? "") as String,
+      logradouro: (map["logradouro"] ?? "") as String,
+      complemento: (map["complemento"] ?? "") as String,
+      bairro: (map["bairro"] ?? "") as String,
+      localidade: (map["localidade"] ?? "") as String,
+      uf: (map["uf"] ?? "") as String,
+      ddd: (map["ddd"] ?? "") as String,
     );
   }
 }
