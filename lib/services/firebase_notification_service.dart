@@ -131,7 +131,7 @@ class FirebaseNotificationService {
     return res;
   }
 
-  void subscribe(String topicName) async {
+  Future<void> subscribe(String topicName) async {
     if (!_initialized || _isAuthorized) {
       return;
     }
@@ -140,7 +140,7 @@ class FirebaseNotificationService {
     await FirebaseMessaging.instance.subscribeToTopic(topicName);
   }
 
-  void unsubscribe(String topicName) async {
+  Future<void> unsubscribe(String topicName) async {
     if (!_initialized || !_isAuthorized) {
       return;
     }
@@ -149,8 +149,8 @@ class FirebaseNotificationService {
     await FirebaseMessaging.instance.unsubscribeFromTopic(topicName);
   }
 
-  void deleteToken() async {
-    FirebaseMessaging.instance.deleteToken();
+  Future<void> deleteToken() async {
+    await FirebaseMessaging.instance.deleteToken();
   }
 
   Future<RemoteMessage?> getInitialMessage() async {
