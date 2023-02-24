@@ -149,6 +149,10 @@ class FirebaseNotificationService {
     await FirebaseMessaging.instance.unsubscribeFromTopic(topicName);
   }
 
+  void deleteToken() async {
+    FirebaseMessaging.instance.deleteToken();
+  }
+
   Future<RemoteMessage?> getInitialMessage() async {
     return FirebaseMessaging.instance.getInitialMessage();
   }
