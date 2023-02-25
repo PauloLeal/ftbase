@@ -132,7 +132,7 @@ class FirebaseNotificationService {
   }
 
   Future<void> subscribe(String topicName) async {
-    if (!_initialized || _isAuthorized) {
+    if (!_initialized || !_isAuthorized) {
       return;
     }
 
@@ -150,6 +150,7 @@ class FirebaseNotificationService {
   }
 
   Future<void> deleteToken() async {
+    Log.info("DeleteToken FCM token");
     await FirebaseMessaging.instance.deleteToken();
   }
 
@@ -157,7 +158,7 @@ class FirebaseNotificationService {
     return FirebaseMessaging.instance.getInitialMessage();
   }
 
-  Future<void> initialize() async => _configure(isRetry: false);
+  Future<void> initialize() async => await _configure(isRetry: false);
 
   Future<void> showLocalNotification(String channelId, String channelName, RemoteMessage message) async {
     RemoteNotification? notification = message.notification;
