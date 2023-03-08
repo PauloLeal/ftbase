@@ -1,5 +1,3 @@
-import 'package:ftbase/ftbase.dart';
-
 import 'http_utils.dart';
 
 class CepData {

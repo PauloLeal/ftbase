@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
-import 'package:ftbase/ftbase.dart';
 import 'package:http/http.dart' as http;
+
+import '../services/local_storage_service.dart';
 
 class HttpResponse {
   final http.Response originalResponse;
