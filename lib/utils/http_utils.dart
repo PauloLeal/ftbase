@@ -10,7 +10,7 @@ class HttpResponse {
 
   int get statusCode => originalResponse.statusCode;
   String get body => utf8.decode(originalResponse.bodyBytes);
-  String get toJson => HttpUtils.unmarshalJson(body);
+  Map<String, dynamic> get toJson => HttpUtils.unmarshalJson(body);
 
   HttpResponse._private({
     required this.originalResponse,
