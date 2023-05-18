@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../services/local_storage_service.dart';
@@ -44,6 +45,15 @@ class HttpUtils {
     return _reqJson("put", url, json: json, headers: headers, cached: cached);
   }
 
+  static Future<HttpResponse> postFile(
+    String url,
+    Uint8List bytes,
+    String filename, {
+    Map<String, String>? headers,
+  }) async {
+    return _reqJson("upload", url, headers: headers, bytes: bytes, filename: filename);
+  }
+
   static String _hashRequest(
     String method,
     String url, {
@@ -78,7 +88,9 @@ class HttpUtils {
     String url, {
     Map<String, dynamic>? json,
     Map<String, String>? headers,
+    String? filename,
     bool cached = false,
+    Uint8List? bytes,
   }) async {
     LocalStorageService ls = LocalStorageService.instance;
     headers ??= {};
@@ -112,18 +124,27 @@ class HttpUtils {
 
     http.Response response;
 
-    if (method == "get") {
-      response = await http.get(Uri.parse(url), headers: headers);
-    } else {
-      var f = http.post;
-      if (method == "put") {
-        f = http.put;
-      }
-      response = await f(
-        Uri.parse(url),
-        headers: headers,
-        body: json != null ? marshalJson(json) : null,
+    if (method == "upload") {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(headers);
+      request.files.add(
+        http.MultipartFile.fromBytes('fileUpload', bytes!, filename: filename),
       );
+      response = await http.Response.fromStream(await request.send());
+    } else {
+      if (method == "get") {
+        response = await http.get(Uri.parse(url), headers: headers);
+      } else {
+        var f = http.post;
+        if (method == "put") {
+          f = http.put;
+        }
+        response = await f(
+          Uri.parse(url),
+          headers: headers,
+          body: json != null ? marshalJson(json) : null,
+        );
+      }
     }
 
     HttpResponse ret;
@@ -142,11 +163,12 @@ class HttpUtils {
     } else {
       ret = HttpResponse._private(originalResponse: response);
     }
-
-    ls.putString(cacheKeyBody, response.body);
-    ls.putString(cacheKeyStatus, "${response.statusCode}");
-    if (response.headers.containsKey("etag")) {
-      ls.putString(cacheKeyEtag, response.headers["etag"] ?? "");
+    if (cached) {
+      ls.putString(cacheKeyBody, response.body);
+      ls.putString(cacheKeyStatus, "${response.statusCode}");
+      if (response.headers.containsKey("etag")) {
+        ls.putString(cacheKeyEtag, response.headers["etag"] ?? "");
+      }
     }
 
     return ret;
