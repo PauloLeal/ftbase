@@ -1,4 +1,4 @@
-import 'package:ftbase/utils/br_utils.dart';
+import 'package:ftbase/ftbase.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -11,9 +11,10 @@ void main() {
     expect(BrUtils.validadeCpf("03346teste1671002@mail"), false);
     expect(BrUtils.validadeCpf("57abc803.6586-52"), false);
     expect(BrUtils.validadeCpf("03.3461.67100-2"), false);
+    expect(BrUtils.validadeCpf("DDD00000000000"), false);
 
     List<String> blackListed = [
-      "00000000000",
+      "00000SS000000",
       "11111111111",
       "22222222222",
       "33333333333",
