@@ -8,15 +8,15 @@ class FirebaseCrashlyticsService {
     return _config(true);
   }
 
-  void disableIf(bool condition) async {
+  Future<void> disableIf(bool condition) async {
     _config(!condition);
   }
 
-  void enableIf(bool condition) async {
+  Future<void> enableIf(bool condition) async {
     _config(condition);
   }
 
-  void _config(bool condition) async {
+  Future<void> _config(bool condition) async {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(condition);
   }
 
