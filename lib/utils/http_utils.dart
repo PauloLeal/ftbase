@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 import '../services/local_storage_service.dart';
 
@@ -19,12 +20,21 @@ class HttpResponse {
 }
 
 class HttpUtils {
+  static final HttpWithMiddleware _httpClient = HttpWithMiddleware.build(middlewares: [
+    HttpLogger(logLevel: LogLevel.BODY),
+  ]);
+
+  // static final HttpClientWithMiddleware _streamedHttpClient = HttpClientWithMiddleware.build(middlewares: [
+  //   HttpLogger(logLevel: LogLevel.BODY),
+  // ]);
+
   static Future<HttpResponse> getJson(
     String url, {
     Map<String, String>? headers,
     bool cached = false,
+    bool hasLog = false,
   }) async {
-    return _reqJson("get", url, headers: headers, cached: cached);
+    return _reqJson("get", url, headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> postJson(
@@ -32,8 +42,9 @@ class HttpUtils {
     Map<String, dynamic>? json, {
     Map<String, String>? headers,
     bool cached = false,
+    bool hasLog = false,
   }) async {
-    return _reqJson("post", url, json: json, headers: headers, cached: cached);
+    return _reqJson("post", url, json: json, headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> putJson(
@@ -41,8 +52,9 @@ class HttpUtils {
     Map<String, dynamic>? json, {
     Map<String, String>? headers,
     bool cached = false,
+    bool hasLog = false,
   }) async {
-    return _reqJson("put", url, json: json, headers: headers, cached: cached);
+    return _reqJson("put", url, json: json, headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> postFile(
@@ -90,6 +102,7 @@ class HttpUtils {
     Map<String, String>? headers,
     String? filename,
     bool cached = false,
+    bool hasLog = false,
     Uint8List? bytes,
   }) async {
     LocalStorageService ls = LocalStorageService.instance;
@@ -133,11 +146,13 @@ class HttpUtils {
       response = await http.Response.fromStream(await request.send());
     } else {
       if (method == "get") {
-        response = await http.get(Uri.parse(url), headers: headers);
+        response = hasLog
+            ? await _httpClient.get(Uri.parse(url), headers: headers)
+            : await http.get(Uri.parse(url), headers: headers);
       } else {
-        var f = http.post;
+        var f = hasLog ? _httpClient.post : http.post;
         if (method == "put") {
-          f = http.put;
+          f = hasLog ? _httpClient.put : http.put;
         }
         response = await f(
           Uri.parse(url),
