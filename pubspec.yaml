@@ -1,6 +1,6 @@
 name: ftbase
 description: A new Flutter plugin project.
-version: 1.7.0
+version: 1.7.1
 
 environment:
   sdk: '>=3.0.0'
