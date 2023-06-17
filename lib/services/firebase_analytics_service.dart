@@ -15,4 +15,6 @@ class FirebaseAnalyticsService {
   }) async {
     await FirebaseAnalytics.instance.logEvent(name: name, parameters: parameters, callOptions: callOptions);
   }
+
+  FirebaseAnalyticsObserver routeObserver() => FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance);
 }
