@@ -575,6 +575,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  pretty_http_logger:
+    dependency: transitive
+    description:
+      name: pretty_http_logger
+      sha256: "0543b45c9ef492142edb137e23d569e10d021d4f06b8f824bcafc7333348d4f7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   process:
     dependency: transitive
     description:

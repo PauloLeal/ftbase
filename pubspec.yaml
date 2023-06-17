@@ -28,6 +28,7 @@ dependencies:
   geolocator: ^9.0.2
   app_settings: ^4.2.0
   wakelock: ^0.6.2
+  pretty_http_logger: ^0.2.2
 
 dev_dependencies:
   flutter_test:
