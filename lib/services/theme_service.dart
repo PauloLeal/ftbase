@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ftbase/services/local_storage_service.dart';
+import 'package:ftbase/services/shared_preferences_service.dart';
 import 'package:json_theme/json_theme.dart';
 
 enum ThemeType { DARK, LIGHT }
@@ -38,7 +38,7 @@ class ThemeService {
   }
 
   Future<void> _selectTheme() async {
-    String? t = await LocalStorageService.instance.getString(themeKey, defaultValue: ThemeType.LIGHT.toString());
+    String? t = await SharedPreferencesService.instance.getString(themeKey, defaultValue: ThemeType.LIGHT.toString());
     if (t == ThemeType.DARK.toString()) {
       _currentTheme = _darkTheme;
       _currentThemeType = ThemeType.DARK;
@@ -49,7 +49,7 @@ class ThemeService {
   }
 
   Future<void> setTheme(ThemeType theme) async {
-    await LocalStorageService.instance.putString(themeKey, theme.toString());
+    await SharedPreferencesService.instance.putString(themeKey, theme.toString());
     await _selectTheme();
     if (onThemeChanged != null) {
       await onThemeChanged!(_currentTheme);

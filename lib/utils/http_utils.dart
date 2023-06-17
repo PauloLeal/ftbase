@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
-import '../services/local_storage_service.dart';
+import '../services/shared_preferences_service.dart';
 
 class HttpResponse {
   final http.Response originalResponse;
@@ -105,7 +105,7 @@ class HttpUtils {
     bool hasLog = false,
     Uint8List? bytes,
   }) async {
-    LocalStorageService ls = LocalStorageService.instance;
+    SharedPreferencesService ls = SharedPreferencesService.instance;
     headers ??= {};
     bool isUsingCache = false;
 

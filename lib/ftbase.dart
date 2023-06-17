@@ -6,7 +6,7 @@ export 'services/firebase_notification_service.dart';
 export 'services/firebase_service.dart';
 export 'services/firebase_storage_service.dart';
 export 'services/geolocation_service.dart';
-export 'services/local_storage_service.dart';
+export 'services/shared_preferences_service.dart';
 export 'services/theme_service.dart';
 export 'services/wakelock_service.dart';
 export 'utils/exception_handler.dart';
