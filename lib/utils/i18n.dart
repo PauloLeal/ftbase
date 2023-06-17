@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -40,11 +39,7 @@ class I18n {
         try {
           lp = Platform.localeName.split("_");
         } on Exception {
-          try {
-            lp = Intl.getCurrentLocale().split("_");
-          } on Exception {
-            lp = ["en", "US"];
-          }
+          lp = ["en", "US"];
         }
       }
 
