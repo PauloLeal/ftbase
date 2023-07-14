@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ftbase/services/shared_preferences_service.dart';
 import 'package:json_theme/json_theme.dart';
+import 'package:json_theme/json_theme_schemas.dart';
 
 enum ThemeType { DARK, LIGHT }
 

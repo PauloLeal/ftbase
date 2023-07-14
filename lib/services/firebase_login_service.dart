@@ -63,7 +63,8 @@ class FirebaseLoginService {
     return _currentUser?.providerData.isEmpty == true;
   }
 
-  Future<LoginResponse> sendPhoneToken(String phoneNumber, Duration timeout, void Function() onVerificationTimeout) async {
+  Future<LoginResponse> sendPhoneToken(
+      String phoneNumber, Duration timeout, void Function() onVerificationTimeout) async {
     Completer<LoginResponse> c = Completer();
 
     _verifiedCredential = null;

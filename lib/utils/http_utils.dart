@@ -20,13 +20,12 @@ class HttpResponse {
 }
 
 class HttpUtils {
-  static final HttpWithMiddleware _httpClient = HttpWithMiddleware.build(middlewares: [
-    HttpLogger(logLevel: LogLevel.BODY),
-  ]);
-
-  // static final HttpClientWithMiddleware _streamedHttpClient = HttpClientWithMiddleware.build(middlewares: [
-  //   HttpLogger(logLevel: LogLevel.BODY),
-  // ]);
+  static final HttpWithMiddleware _httpClient = HttpWithMiddleware.build(
+    requestTimeout: const Duration(seconds: 25),
+    middlewares: [
+      HttpLogger(logLevel: LogLevel.BODY),
+    ],
+  );
 
   static Future<HttpResponse> getJson(
     String url, {
