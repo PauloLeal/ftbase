@@ -33,7 +33,8 @@ class HttpUtils {
     bool cached = false,
     bool hasLog = false,
   }) async {
-    return _reqJson("get", url, headers: headers, cached: cached, hasLog: hasLog);
+    return _reqJson("get", url,
+        headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> postJson(
@@ -43,7 +44,8 @@ class HttpUtils {
     bool cached = false,
     bool hasLog = false,
   }) async {
-    return _reqJson("post", url, json: json, headers: headers, cached: cached, hasLog: hasLog);
+    return _reqJson("post", url,
+        json: json, headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> putJson(
@@ -53,7 +55,19 @@ class HttpUtils {
     bool cached = false,
     bool hasLog = false,
   }) async {
-    return _reqJson("put", url, json: json, headers: headers, cached: cached, hasLog: hasLog);
+    return _reqJson("put", url,
+        json: json, headers: headers, cached: cached, hasLog: hasLog);
+  }
+
+  static Future<HttpResponse> deleteJson(
+    String url,
+    Map<String, dynamic>? json, {
+    Map<String, String>? headers,
+    bool cached = false,
+    bool hasLog = false,
+  }) async {
+    return _reqJson("delete", url,
+        json: json, headers: headers, cached: cached, hasLog: hasLog);
   }
 
   static Future<HttpResponse> postFile(
@@ -62,7 +76,8 @@ class HttpUtils {
     String filename, {
     Map<String, String>? headers,
   }) async {
-    return _reqJson("upload", url, headers: headers, bytes: bytes, filename: filename);
+    return _reqJson("upload", url,
+        headers: headers, bytes: bytes, filename: filename);
   }
 
   static String _hashRequest(
@@ -124,7 +139,8 @@ class HttpUtils {
       cachedBody = await ls.getString(cacheKeyBody);
       String? status = await ls.getString(cacheKeyStatus);
       if (status != null) {
-        cachedStatus = int.parse(await ls.getString("httpreq-$reqHash-status") ?? "0");
+        cachedStatus =
+            int.parse(await ls.getString("httpreq-$reqHash-status") ?? "0");
       }
       String? etag = await ls.getString(cacheKeyEtag);
 
@@ -148,6 +164,18 @@ class HttpUtils {
         response = hasLog
             ? await _httpClient.get(Uri.parse(url), headers: headers)
             : await http.get(Uri.parse(url), headers: headers);
+      } else if (method == "delete") {
+        response = hasLog
+            ? await _httpClient.delete(
+                Uri.parse(url),
+                headers: headers,
+                body: json != null ? marshalJson(json) : null,
+              )
+            : await http.delete(
+                Uri.parse(url),
+                headers: headers,
+                body: json != null ? marshalJson(json) : null,
+              );
       } else {
         var f = hasLog ? _httpClient.post : http.post;
         if (method == "put") {
