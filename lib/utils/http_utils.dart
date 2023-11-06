@@ -80,6 +80,14 @@ class HttpUtils {
         headers: headers, bytes: bytes, filename: filename);
   }
 
+  static Future<HttpResponse> postFiles(
+    String url,
+    Map<String, Uint8List> files, {
+    Map<String, String>? headers,
+  }) async {
+    return _reqJson("multi_upload", url, headers: headers, files: files);
+  }
+
   static String _hashRequest(
     String method,
     String url, {
@@ -118,6 +126,7 @@ class HttpUtils {
     bool cached = false,
     bool hasLog = false,
     Uint8List? bytes,
+    Map<String, Uint8List>? files,
   }) async {
     SharedPreferencesService ls = SharedPreferencesService.instance;
     headers ??= {};
@@ -158,6 +167,15 @@ class HttpUtils {
       request.files.add(
         http.MultipartFile.fromBytes('fileUpload', bytes!, filename: filename),
       );
+      response = await http.Response.fromStream(await request.send());
+    } else if (method == "multi_upload") {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(headers);
+      files!.forEach((key, value) {
+        request.files.add(
+          http.MultipartFile.fromBytes('fileUpload', value, filename: key),
+        );
+      });
       response = await http.Response.fromStream(await request.send());
     } else {
       if (method == "get") {
