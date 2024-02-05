@@ -4,6 +4,10 @@ class FirebaseAnalyticsService {
   FirebaseAnalyticsService._privateConstructor();
   static final FirebaseAnalyticsService instance = FirebaseAnalyticsService._privateConstructor();
 
+  Future<void> setUseId(String idUser) async {
+    await FirebaseAnalytics.instance.setUserId(id: idUser);
+  }
+
   Future<void> logAppOpen({AnalyticsCallOptions? callOptions}) async {
     await FirebaseAnalytics.instance.logAppOpen(callOptions: callOptions);
   }
