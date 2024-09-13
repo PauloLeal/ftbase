@@ -63,7 +63,7 @@ class GeolocationService {
   }
 
   Future<void> openSettings() async {
-    await AppSettings.openLocationSettings();
+    await AppSettings.openAppSettings(type: AppSettingsType.location);
   }
 
   static double calculateDistanceInMetters(Position p1, Position p2) {
